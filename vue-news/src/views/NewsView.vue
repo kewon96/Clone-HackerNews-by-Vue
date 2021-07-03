@@ -9,10 +9,7 @@
 </template>
 
 <script>
-/**
- * 통신쪽 관련된 API
- */
-import axios from 'axios';
+import { fetchList } from '../api/index';
 
 export default {
   // 라우팅이라든지 데이터로직이 들어오는 방식은 좋지않음
@@ -26,7 +23,7 @@ export default {
   created() {
     let vm = this;
 
-    axios.get('https://api.hnpwa.com/v0/news/1.json')
+    fetchList('news/1.json')
     .then(response => {
       console.log(response);
       // 콜백자체가 Vue 컴포넌트를 바라보고있지 않음 => 밖에서 한번 연결해줘야함
