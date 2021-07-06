@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-for="(user, id) in users" v-bind:key="id">
-      {{ user.id }}
-      {{ user.title }}
+    <div v-for="(news, id) in newsArray" v-bind:key="id">
+      {{ news.id }}
+      {{ news.title }}
     </div>
   </div>
 </template>
@@ -16,17 +16,14 @@ export default {
   // 이런 로직을 별도의 컴포넌트로 등록시키는게 좋음
   data() {
     return  {
-      users: []
+      newsArray: []
     }
   },
   created() {
-    let vm = this;
-
     fetchList('news/1.json')
     .then(response => {
-      console.log(response);
       // 콜백자체가 Vue 컴포넌트를 바라보고있지 않음 => 밖에서 한번 연결해줘야함
-      vm.users = response.data;
+      this.newsArray = response.data;
     })
     .catch(e => {
       console.log(e)
