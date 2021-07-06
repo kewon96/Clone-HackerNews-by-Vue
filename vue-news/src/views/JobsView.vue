@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { fetchList } from '../api/index';
+import { fetchList } from '../api/api';
 
 export default {
   data() {
