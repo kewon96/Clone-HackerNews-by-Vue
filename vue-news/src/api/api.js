@@ -12,17 +12,21 @@ const config = {
 };
 
 // 2. API 함수들 정리
+const fetchNews = () => {
+    return axios.get(`${config.baseUrl}news/1.json`);
+}
 
-/**
- *
- * @param backUrl baseUrl뒤에 추가될 url
- * @returns {Promise<AxiosResponse<any>>}
- */
-const fetchList = (backUrl) => {
-    return axios.get(`${config.baseUrl}${backUrl}`);
+const fetchAsks = () => {
+    return axios.get(`${config.baseUrl}ask/1.json`);
+}
+
+const fetchJobs = () => {
+    return axios.get(`${config.baseUrl}jobs/1.json`);
 }
 
 export {
-    fetchList
+    fetchNews,
+    fetchAsks,
+    fetchJobs,
 }
 

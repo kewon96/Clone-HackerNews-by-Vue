@@ -13,9 +13,14 @@ export default {
   // 라우팅이라든지 데이터로직이 들어오는 방식은 좋지않음
   // 레벨이 깊어지거나 설계가 바뀔 때의 상황을 유연하게 대처하고 싶으면
   // 이런 로직을 별도의 컴포넌트로 등록시키는게 좋음
-  data() {
-    return  {
-      newsArray: []
+  // data() {
+  //   return  {
+  //     newsArray: []
+  //   }
+  // },
+  computed: {
+    newsArray() {
+      return this.$store.state.newsArray;
     }
   },
   created() {
@@ -27,10 +32,8 @@ export default {
     // .catch(e => {
     //   console.log(e)
     // })
-    this.$store.dispatch('FETCH_DATE', 'news/1.json');
-
-    const newsArray = this.$store.state.newsArray;
-    this.newsArray = newsArray;
+    // this.$store.dispatch('FETCH_DATE', 'news/1.json');
+    this.$store.dispatch('FETCH_NEWS');
   }
 }
 </script>
