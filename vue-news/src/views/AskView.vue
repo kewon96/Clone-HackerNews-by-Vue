@@ -9,22 +9,19 @@
 </template>
 
 <script>
-import { fetchList } from '../api/api';
+import { mapState } from 'vuex';
 
 export default {
-  data() {
-    return  {
-      askArray: []
-    }
+  computed: {
+    ...mapState({
+      askArray: state => state.askArray,
+    })
+    // askArray() {
+    //   return this.$store.state.askArray;
+    // }
   },
   created() {
-    fetchList('ask/1.json')
-        .then(response => {
-          this.askArray = response.data;
-        })
-        .catch(e => {
-          console.log(e)
-        });
+    this.$store.dispatch('FETCH_ASK');
   }
 }
 </script>

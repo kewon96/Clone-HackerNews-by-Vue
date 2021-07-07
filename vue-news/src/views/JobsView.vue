@@ -9,23 +9,19 @@
 </template>
 
 <script>
-import { fetchList } from '../api/api';
+import { mapGetters } from 'vuex'
 
 export default {
-  data() {
-    return  {
-      jobArray: []
-    }
+  computed: {
+    // ...mapGetters({
+    //   jobArray: 'jobArray' // 적용할 데이터: 'vuex'에서 지정한 이름(store)
+    // }),
+    ...mapGetters([
+        'jobArray'
+    ])
   },
   created() {
-    fetchList('jobs/1.json')
-        .then(response => {
-          // 콜백자체가 Vue 컴포넌트를 바라보고있지 않음 => 밖에서 한번 연결해줘야함
-          this.jobArray = response.data;
-        })
-        .catch(e => {
-          console.log(e)
-        })
+    this.$store.dispatch('FETCH_JOBS');
   }
 }
 </script>
